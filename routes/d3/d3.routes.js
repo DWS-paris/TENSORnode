@@ -7,8 +7,8 @@ Import & config
     const d3Router = express.Router();
 
     // Inner
-    const { csvParser, trainDataConvertor } = require('../../services/parser.serv');
-    const { createModel } = require('../../services/ts.serv');
+    const { csvParser, trainDataConvertor, testDataConvertor } = require('../../services/parser.serv');
+    const { createModel, testModel } = require('../../services/ts.serv');
 //
 
 /* 
@@ -32,6 +32,19 @@ Definition
                 // Create TS model
                 createModel(convertedData)
                 .then( model  =>  res.json(model) )
+                .catch( err => res.json("error") )
+            });
+
+            d3Router.post( '/test', (req, res) => {
+                // Conversion CSV/JSON
+                const jsonData = csvParser( req.body.input )
+
+                // Conversion JSON/Tensorflow
+                const convertedData = testDataConvertor(jsonData);
+
+                // Test TS model
+                testModel(convertedData)
+                .then( prediction  =>  res.json(prediction) )
                 .catch( err => res.json("error") )
             });
         };

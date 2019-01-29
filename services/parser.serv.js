@@ -73,6 +73,28 @@ Configuration
         // Renvoyer le résultat
         return convertedData;
     }
+
+    const testDataConvertor = (data) => {
+        // Déclaration
+        let convertedData = [];
+
+        // Convertir la data pour Tensorflow
+        for( let item of data ){
+            // Créer un tableau vide
+            let converted = [];
+
+            // Boucle sur l'objet item
+            for( let prop in item ){
+                converted.push( item[prop] )
+            }
+
+            // Ajouter l'obbjet dans la collection convertedData
+            convertedData.push(converted);
+        }
+
+        // Renvoyer le résultat
+        return convertedData;
+    }
 //
 
 /* 
@@ -80,6 +102,7 @@ Export
 */
     module.exports = {
         csvParser,
-        trainDataConvertor
+        trainDataConvertor,
+        testDataConvertor
     }
 //

@@ -4,9 +4,7 @@ header, main, footer{
     padding: 2rem;
 }
 
-#fromConverter textarea{
-    min-height: 25rem;
-}
+
 
 .hidden{
     display: none;

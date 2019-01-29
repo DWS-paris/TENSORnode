@@ -67,12 +67,35 @@ Configuration
             //
         });
     };
+
+    // Fonction pour tester un model
+    const testModel = ( data ) => {
+        return new Promise( (resolve, reject) => {
+            // charger le model
+            TensorflowClass.loadModel( 'file://ts-model/iris' )
+            .then( async tsModel => {
+                // Set input data
+                const testingData = await TensorflowClass.tensor2d(data);
+                
+                // Start prediction
+                const prediction = await tsModel.predict(testingData);
+
+                // Console log of prediction
+                prediction.print();
+
+                // send response
+                return resolve( prediction );
+            })
+            .catch( error => reject(error) );
+        })
+    }
 //
 
 /* 
 Export
 */
     module.exports = {
-        createModel
+        createModel,
+        testModel
     };
 //
