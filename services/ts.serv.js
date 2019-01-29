@@ -72,7 +72,7 @@ Configuration
     const testModel = ( data ) => {
         return new Promise( (resolve, reject) => {
             // charger le model
-            TensorflowClass.loadModel( 'file://ts-model/iris' )
+            TensorflowClass.loadModel( 'file://ts-model/iris/model.json' )
             .then( async tsModel => {
                 // Set input data
                 const testingData = await TensorflowClass.tensor2d(data);
@@ -83,8 +83,10 @@ Configuration
                 // Console log of prediction
                 prediction.print();
 
+                console.log(prediction)
+
                 // send response
-                return resolve( prediction );
+                return resolve( prediction.argMax().dataSync() );
             })
             .catch( error => reject(error) );
         })

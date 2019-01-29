@@ -41,11 +41,11 @@ Definition
 
                 // Conversion JSON/Tensorflow
                 const convertedData = testDataConvertor(jsonData);
-
+                
                 // Test TS model
                 testModel(convertedData)
                 .then( prediction  =>  res.json(prediction) )
-                .catch( err => res.json("error") )
+                .catch( err => res.json(err) )
             });
         };
 

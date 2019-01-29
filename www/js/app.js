@@ -47,7 +47,7 @@ Attendre le chargement du DOM
             }
 
             if( csvTest.value.length !== 0 ){
-                fetch( 'http://localhost:9876/api/d3/convert', header )
+                fetch( 'http://localhost:9876/api/d3/test', header )
                 .then( data => { 
                     return data.json()
                 })
